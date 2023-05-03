@@ -77,7 +77,7 @@ public class Login2 extends HttpServlet {
         // rd.include(request, response);
 
         String user = request.getParameter("user");
-        String plan = request.getParameter("plan");
+        String plan = request.getParameter("planes");
         Integer compe = Integer.parseInt(request.getParameter("compes"));
     }
 
