@@ -1,3 +1,6 @@
 .transicion{
     transition: 0.2s;
   }
+  .alertas{
+    background-color: rgb(225, 244, 225);
+  }

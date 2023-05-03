@@ -7,16 +7,18 @@ package com.hito.hitoallam;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.TimeUnit;
+
+import clases.Usuarios;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author Allam
  */
-public class Login2 extends HttpServlet {
+public class Login2 extends HttpServlet  {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,10 +77,35 @@ public class Login2 extends HttpServlet {
         // "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Texto Negrita</span> texto siguiente</div>"
         //RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
         // rd.include(request, response);
-
+        //guardar variables e instanciar usuario
         String user = request.getParameter("user");
-        String plan = request.getParameter("planes");
-        Integer compe = Integer.parseInt(request.getParameter("compes"));
+        String plan = request.getParameter("plan"); //princ, inter, elit
+        int peso = Integer.parseInt(request.getParameter("peso"));
+        String categ = request.getParameter("catego");
+        int compe = Integer.parseInt(request.getParameter("compes"));
+        int horas = Integer.parseInt(request.getParameter("horas"));
+
+        Usuarios usuario = new Usuarios(user,plan,peso,categ,compe,horas);
+        if(usuario.comprobarCategoria(usuario.peso,usuario.categ).equals("error")){
+            request.setAttribute("alert4","<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+        }else if(usuario.comprobarCompeticiones(usuario.plan,usuario.compe).equals("error")){
+            request.setAttribute("alert5","<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Es principiante,</span> no puede acceder a competiciones</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+        }else{
+            request.setAttribute("alert7","<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>Enviado</span> correctamente</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+            
+        }
+        
+        
+        
+
+        
+
     }
 
     /**

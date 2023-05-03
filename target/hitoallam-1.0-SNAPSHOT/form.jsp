@@ -115,12 +115,6 @@
                                 placeholder="Nombre de usuario" required>
                         </div>
                         ${alert1}
-                        <!-- alert1 -->
-                        <!-- <div class="p-4 mb-4 text-sm text-red-800 rounded-lg
-                            bg-red-50 dark:text-red-400 max-w-md" role="alert">
-                            <span class="font-medium">Danger alert!</span>
-                            Change a few things up and try submitting again.
-                        </div> -->
                         <div class="mb-6">
                             <label for="plan" class="block mb-2 text-sm
                                 font-medium text-gray-900 dark:text-black">Elige
@@ -206,7 +200,7 @@
                                 dark:focus:ring-blue-500
                                 dark:focus:border-blue-500 dark:border-gray-600"
                                 required>
-                                <option selected value="nohoras">Ninguna</option>
+                                <option selected value="0">Ninguna</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -222,7 +216,10 @@
                             dark:bg-green-950 dark:hover:bg-green-800
                             dark:focus:ring-blue-800">Enviar</button>
                     </form>
+                    <br>
+                    ${alert7}
                 </div>
+
 
 
             </main>
