@@ -114,6 +114,7 @@
                                 dark:focus:border-blue-500"
                                 placeholder="Nombre de usuario" required>
                         </div>
+                        ${hola}
                         ${alert1}
                         <div class="mb-6">
                             <label for="plan" class="block mb-2 text-sm
@@ -220,7 +221,9 @@
                     ${alert7}
                 </div>
 
-
+                
+                    
+                  
 
             </main>
             <br>
@@ -247,6 +250,5 @@
                 </ul>
             </div>
         </footer>
-
     </body>
 </html>

@@ -4,3 +4,7 @@
   .alertas{
     background-color: rgb(225, 244, 225);
   }
+  .flexion{
+    gap: 20px;
+    justify-content: center;
+  }

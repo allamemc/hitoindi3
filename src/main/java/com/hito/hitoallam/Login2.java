@@ -14,20 +14,23 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Allam
  */
-public class Login2 extends HttpServlet  {
+public class Login2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,10 +54,10 @@ public class Login2 extends HttpServlet  {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -65,10 +68,10 @@ public class Login2 extends HttpServlet  {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -85,25 +88,21 @@ public class Login2 extends HttpServlet  {
         int compe = Integer.parseInt(request.getParameter("compes"));
         int horas = Integer.parseInt(request.getParameter("horas"));
 
-        Usuarios usuario = new Usuarios(user,plan,peso,categ,compe,horas);
-        if(usuario.comprobarCategoria(usuario.peso,usuario.categ).equals("error")){
-            request.setAttribute("alert4","<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-        }else if(usuario.comprobarCompeticiones(usuario.plan,usuario.compe).equals("error")){
-            request.setAttribute("alert5","<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Es principiante,</span> no puede acceder a competiciones</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-        }else{
-            request.setAttribute("alert7","<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>Enviado</span> correctamente</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-            
-        }
-        
-        
-        
+        Usuarios usuario = new Usuarios(user, plan, peso, categ, compe, horas);
 
+        if (usuario.comprobarCategoria(usuario.peso, usuario.categ).equals("error")) {
+            request.setAttribute("alert4", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+        } else if (usuario.comprobarCompeticiones(usuario.plan, usuario.compe).equals("error")) {
+            request.setAttribute("alert5", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Lo sentimos,</span> su plan no permite competiciones. Revisa nuevamente.</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+        } else {
+            request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>¡Formulario </span>enviado correctamente! Abajo tiene su cuota.</div>");
+            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+            rd.include(request, response);
+        }
         
 
     }
