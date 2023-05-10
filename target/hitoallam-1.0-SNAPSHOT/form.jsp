@@ -88,8 +88,7 @@
 
                         <h1 class="mb-4 text-4xl font-extrabold leading-none
                             tracking-tight text-gray-900 md:text-5xl lg:text-6xl
-                            dark:text-black">Calcula tu cuota mensual de<span
-                                class="text-green-800 "> SoloCrossFit</span></h1>
+                            dark:text-black">Calcula tu cuota mensual de<span class="text-green-800 "> SoloCrossFit</span></h1>
                         <p class="text-lg font-normal text-gray-500 lg:text-xl
                             dark:text-gray-400 text-center">Si est&aacute;s
                             interesado en unirte a SoloCrossFit, es importante
@@ -114,7 +113,6 @@
                                 dark:focus:border-blue-500"
                                 placeholder="Nombre de usuario" required>
                         </div>
-                        ${hola}
                         ${alert1}
                         <div class="mb-6">
                             <label for="plan" class="block mb-2 text-sm

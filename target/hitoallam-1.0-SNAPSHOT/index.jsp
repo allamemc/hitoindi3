@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="estilos.css">
     <link rel="icon" type="image/x-icon"
       href="./img/Michigan-State-Spartans1-removebg-preview.ico">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+      
   </head>
   <body>
     <!--

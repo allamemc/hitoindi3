@@ -1,4 +1,4 @@
-package clases;
+package com.hito.clases;
 
 public class Usuarios {
     public String user;

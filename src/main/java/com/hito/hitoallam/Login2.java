@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
-import clases.Usuarios;
+import com.hito.clases.Usuarios;
+import com.hito.clases.Alertas;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -76,34 +77,37 @@ public class Login2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // request.setAttribute
-        // "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Texto Negrita</span> texto siguiente</div>"
-        //RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-        // rd.include(request, response);
-        //guardar variables e instanciar usuario
-        String user = request.getParameter("user");
-        String plan = request.getParameter("plan"); //princ, inter, elit
-        int peso = Integer.parseInt(request.getParameter("peso"));
-        String categ = request.getParameter("catego");
-        int compe = Integer.parseInt(request.getParameter("compes"));
-        int horas = Integer.parseInt(request.getParameter("horas"));
-
-        Usuarios usuario = new Usuarios(user, plan, peso, categ, compe, horas);
-
-        if (usuario.comprobarCategoria(usuario.peso, usuario.categ).equals("error")) {
-            request.setAttribute("alert4", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-        } else if (usuario.comprobarCompeticiones(usuario.plan, usuario.compe).equals("error")) {
-            request.setAttribute("alert5", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md' role='alert'> <span class='font-medium'>Lo sentimos,</span> su plan no permite competiciones. Revisa nuevamente.</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-        } else {
-            request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>¡Formulario </span>enviado correctamente! Abajo tiene su cuota.</div>");
-            RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
-            rd.include(request, response);
-        }
         
+        Alertas alerta = new Alertas();
+        
+        try {
+            String user = request.getParameter("user");
+            String plan = request.getParameter("plan"); //princ, inter, elit
+            int peso = Integer.parseInt(request.getParameter("peso"));
+            String categ = request.getParameter("catego");
+            int compe = Integer.parseInt(request.getParameter("compes"));
+            int horas = Integer.parseInt(request.getParameter("horas"));
+
+            Usuarios usuario = new Usuarios(user, plan, peso, categ, compe, horas);
+
+            if (usuario.comprobarCategoria(usuario.peso, usuario.categ).equals("error")) {
+                request.setAttribute("alert4", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
+                RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+                rd.include(request, response);
+            } else if (usuario.comprobarCompeticiones(usuario.plan, usuario.compe).equals("error")) {
+                request.setAttribute("alert5", alerta.mostrarAlertas(5));
+                RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+                rd.include(request, response);
+            } else {
+                request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>¡Formulario </span>enviado correctamente! Abajo tiene su cuota.</div>");
+                RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+                rd.include(request, response);
+            }
+        } catch (Exception e) {
+            request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Error 404!</span></div>");
+                RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+                rd.include(request, response);
+        }
 
     }
 
