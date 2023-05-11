@@ -5,6 +5,11 @@
     background-color: rgb(225, 244, 225);
   }
   .flexion{
+    display: flex;
     gap: 20px;
     justify-content: center;
+  }
+  .flexiloca{
+    display: flex;
+    gap: 40px;
   }

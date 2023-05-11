@@ -29,16 +29,46 @@ public class Usuarios {
                 tipoPlan = "Principiante";
                 break;
             case "inter":
-                tipoPlan = "Inter";
+                tipoPlan = "Intermedio";
                 break;
             case "elit":
-                tipoPlan = "Elite";
+                tipoPlan = "Élite";
                 break;
             default:
                 tipoPlan = "Plan no encontrado";
                 break;
         }
         return tipoPlan;
+    }
+
+    public float precioPlan(String plan){
+        float tipoPlan;
+        switch(plan){
+            case "princ":
+                tipoPlan = 25;
+                break;
+            case "inter":
+                tipoPlan = 30;
+                break;
+            case "elit":
+                tipoPlan = 35;
+                break;
+            default:
+                tipoPlan = 0;
+                break;
+        }
+        return tipoPlan;
+    }
+
+    public int precioCompes(int compes){
+        int precio;
+        precio = compes * 22;
+        return precio;
+    }
+    public float precioHoras(int horas){
+        float precio;
+        precio = horas * 9.95f;
+        return precio;
     }
 
     public String comprobarCategoria(int peso,String categ){
@@ -64,6 +94,24 @@ public class Usuarios {
         return resultado;
     }
 
+    public String nombreCateoria(String categ){
+        String resultado;
+        if(categ.equals("1")){
+            resultado = "Peso pesado";
+        } else if(categ.equals("2")){
+            resultado = "Pesado";
+        } else if(categ.equals("3")){
+            resultado = "Peso medio";
+        } else if(categ.equals("4")){
+            resultado = "Peso ligero medio";
+        } else if(categ.equals("5")){
+            resultado = "Peso ligero";
+        } else{
+            resultado = "Peso pluma";
+        }
+        return resultado;
+    }
+
     public String comprobarCompeticiones(String plan,int compe){
         String resultado;
         if(plan.equals("princ") && compe!=0){
@@ -73,5 +121,6 @@ public class Usuarios {
         }
         return resultado;
     }
+
 }
 

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,16 +10,37 @@
         <link rel="stylesheet" href="estilos.css">
         <link rel="icon" type="image/x-icon"
             href="./img/Michigan-State-Spartans1-removebg-preview.png">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+            <script>
+                function asignarCategoriaDePeso(peso) {
+                    var selectCategoria = document.getElementById("categoriaPeso");
+  
+  if (peso > 100) {
+    selectCategoria.value = 1;
+  } else if (peso === 100) {
+    selectCategoria.value = 2;
+  } else if (peso >= 90) {
+    selectCategoria.value = 3;
+  } else if (peso >= 81) {
+    selectCategoria.value = 4;
+  } else if (peso >= 73) {
+    selectCategoria.value = 5;
+  } else if (peso <= 66 || peso > 66) {
+    selectCategoria.value = 6;
+  } else {
+    selectCategoria.value = "";
+  }
+  
+  selectCategoria.disabled = false;
+  selectCategoria.options[selectCategoria.selectedIndex].setAttribute("selected", true);
+
+                  }
+
+                  
+            </script>
     </head>
     <body>
-        <!--
-  This example requires updating your template:
 
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
         <div class="min-h-full">
             <nav class="bg-white">
                 <div class=" px-4 sm:px-6 lg:px-8">
@@ -88,7 +110,7 @@
 
                         <h1 class="mb-4 text-4xl font-extrabold leading-none
                             tracking-tight text-gray-900 md:text-5xl lg:text-6xl
-                            dark:text-black">Calcula tu cuota mensual de<span class="text-green-800 "> SoloCrossFit</span></h1>
+                            dark:text-black text-center">Calcula tu cuota<span class="text-green-800 "> SoloCrossFit</span></h1>
                         <p class="text-lg font-normal text-gray-500 lg:text-xl
                             dark:text-gray-400 text-center">Si est&aacute;s
                             interesado en unirte a SoloCrossFit, es importante
@@ -99,11 +121,13 @@
                             y compromiso financiero</p>
 
                     </div>
-                    <form action="Login2"
-                        method="post">
+                    <div class="flexiloca">
+                        <form action="Login2"
+                        method="post" class="w-1/2">
+                        ${alerta}
                         <div class="mb-6">
                             <label for="email" class="block mb-2 text-sm
-                                font-medium text-gray-900 dark:text-black">Usuario</label>
+                                font-medium text-gray-900 dark:text-black">Introduzca su nombre y apellidos</label>
                             <input type="text" id="user" name="user"
                                 class="bg-white
                                 border border-gray-300 text-gray-900 text-sm
@@ -111,9 +135,9 @@
                                 dark:border-gray-600 dark:placeholder-gray-400
                                 dark:focus:ring-blue-500
                                 dark:focus:border-blue-500"
-                                placeholder="Nombre de usuario" required>
+                                placeholder="Nombre y Apellidos" required>
                         </div>
-                        ${alert1}
+
                         <div class="mb-6">
                             <label for="plan" class="block mb-2 text-sm
                                 font-medium text-gray-900 dark:text-black">Elige
@@ -135,12 +159,14 @@
                                     semana)</option>
                             </select>
                         </div>
-                        ${alert2}
+
                         <div class="mb-6">
                             <label for="peso" class="block mb-2 text-sm
                                 font-medium text-gray-900 dark:text-black">Tu
                                 Peso (kg)</label>
-                            <input type="number" id="peso" name="peso"
+                            <input type="number" id="peso"
+                                onChange="asignarCategoriaDePeso(this.value)"
+                                name="peso"
                                 class="bg-white
                                 border border-gray-300 text-gray-900 text-sm
                                 rounded-lg block w-full p-2.5
@@ -149,12 +175,13 @@
                                 dark:focus:border-blue-500"
                                 placeholder="Introduzca su peso en Kg" required>
                         </div>
-                        ${alert3}
+
                         <div class="mb-6">
-                            <label for="catego" class="block mb-2 text-sm
-                                font-medium text-gray-900 dark:text-black">Selecciona
-                                tu categor&iacute;a</label>
-                            <select id="catego" name="catego" class="bg-white
+                            <label for="categoriaPeso" class="block mb-2 text-sm
+                                font-medium text-gray-900 dark:text-black">Categor&iacute;a asignada
+                                </label>
+                            <select id="categoriaPeso" name="catego"
+                                class="bg-white
                                 border
                                 border-gray-300 text-sm rounded-lg
                                 focus:ring-blue-500 focus:border-blue-500 block
@@ -162,9 +189,8 @@
                                 dark:focus:ring-blue-500
                                 dark:focus:border-blue-500 dark:border-gray-600"
                                 required>
-                                <option disabled selected value="nosele">Sin
-                                    seleccionar</option>
-                                <option value="1">Peso pesado (>100kg)</option>
+                                <option disabled selected value="nosele">Ind&iacute;quenos su peso</option>
+                                <option value="1">Peso pesado ( > 100kg)</option>
                                 <option value="2">Pesado (100kg)</option>
                                 <option value="3">Peso medio (90kg)</option>
                                 <option value="4">Peso ligero medio (81kg)</option>
@@ -172,7 +198,7 @@
                                 <option value="6">Peso pluma (66kg)</option>
                             </select>
                         </div>
-                        ${alert4}
+ 
                         <div class="mb-6">
                             <label for="even" class="block mb-2 text-sm
                                 font-medium text-gray-900 dark:text-black">N&uacute;mero
@@ -186,37 +212,124 @@
                                 dark:focus:border-blue-500"
                                 placeholder="Introduzca los eventos en los que ha participado" required>
                         </div>
-                        ${alert5}
+      
                         <div class="mb-6">
                             <label for="horas" class="block mb-2 text-sm
                                 font-medium text-gray-900 dark:text-black">A&ntilde;ade
-                                horas extra</label>
-                            <select id="horas" name="horas" class="bg-white
-                                border
-                                border-gray-300 text-sm rounded-lg
-                                focus:ring-blue-500 focus:border-blue-500 block
-                                w-full p-2.5 dark:text-black
+                                horas extra (M&aacute;ximo 20 horas al mes)</label>
+                            <input type="number" id="horas" name="horas"
+                                class="bg-white
+                                border border-gray-300 text-gray-900 text-sm
+                                rounded-lg block w-full p-2.5
+                                dark:border-gray-600 dark:placeholder-gray-400
                                 dark:focus:ring-blue-500
-                                dark:focus:border-blue-500 dark:border-gray-600"
-                                required>
-                                <option selected value="0">Ninguna</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                                dark:focus:border-blue-500"
+                                placeholder="Introduzca los eventos en los que ha participado" required>
                         </div>
-                        ${alert6}
-                        <button type="submit" class="text-white bg-green-950
+          
+                        <button type="submit" class="text-white bg-green-900
                             hover:bg-green-800 focus:ring-4 focus:outline-none
                             focus:ring-blue-300 font-medium rounded-lg text-sm
                             w-full sm:w-auto px-5 py-2.5 text-center
                             dark:bg-green-950 dark:hover:bg-green-800
                             dark:focus:ring-blue-800">Enviar</button>
                     </form>
+                    
+<div class=" w-1/2 h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700" >
+    <div class="flex items-center justify-between mb-4">
+        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Cuota Mensual ${nombre}</h5>
+        <p class="text-sm font-medium text-blue-600">
+            Plan ${nplan}
+        </p>
+   </div>
+   <div class="flow-root">
+        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-2x1 font-extrabold text-gray-900 truncate dark:text-white">
+                            Peso
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            ${peso}
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${categore}
+                    </div>
+                </div>
+            </li>
+            
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-2x1 font-extrabold text-gray-900 truncate dark:text-white">
+                            Plan
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            ${nplan}
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${pplan}
+                    </div>
+                </div>
+            </li>
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+
+                    <div class="flex-1 min-w-0">
+                        <p class="text-2x1 font-extrabold text-gray-900 truncate dark:text-white">
+                            Competiciones
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            ${compes}
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${pcompes}
+                    </div>
+                </div>
+            </li>
+            <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-2x1 font-extrabold text-gray-900 truncate dark:text-white">
+                            Horas Extra
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            ${horase}
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${phoras}
+                    </div>
+                </div>
+            </li>
+            <br>
+            <br>
+            <br>
+            <li class="py-3 pb-0 sm:py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-1 min-w-0">
+                        <p class="font-extrabold text-3xl text-black truncate dark:text-black">
+                            Total Mensual
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${total}<sub>€/mes</sub>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+   </div>
+</div>
+
+                    </div>
+                    
                     <br>
-                    ${alert7}
+           
                 </div>
 
                 

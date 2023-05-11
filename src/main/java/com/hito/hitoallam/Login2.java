@@ -7,7 +7,7 @@ package com.hito.hitoallam;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.concurrent.TimeUnit;
+import java.text.DecimalFormat;
 
 import com.hito.clases.Usuarios;
 import com.hito.clases.Alertas;
@@ -15,13 +15,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Allam
- */
+
 public class Login2 extends HttpServlet {
 
     /**
@@ -78,39 +73,67 @@ public class Login2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String path = request.getServletPath();
+        switch (path) {
+            case "/Login2":
+                insertarCliente(request, response);
+                break;
+            default:
+                response.sendRedirect("index.jsp");
+                break;
+        }
+
+
+    }
+    
+    private void insertarCliente(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         Alertas alerta = new Alertas();
         
         try {
             String user = request.getParameter("user");
             String plan = request.getParameter("plan"); //princ, inter, elit
             int peso = Integer.parseInt(request.getParameter("peso"));
-            String categ = request.getParameter("catego");
+            String catege = request.getParameter("catego");
             int compe = Integer.parseInt(request.getParameter("compes"));
             int horas = Integer.parseInt(request.getParameter("horas"));
 
-            Usuarios usuario = new Usuarios(user, plan, peso, categ, compe, horas);
+            Usuarios usuario = new Usuarios(user, plan, peso, catege, compe, horas);
 
-            if (usuario.comprobarCategoria(usuario.peso, usuario.categ).equals("error")) {
-                request.setAttribute("alert4", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Categoría</span> errónea</div>");
+             if (usuario.comprobarCompeticiones(usuario.plan, usuario.compe).equals("error")) {
+                request.setAttribute("alerta", alerta.mostrarAlertas(1));
                 RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
                 rd.include(request, response);
-            } else if (usuario.comprobarCompeticiones(usuario.plan, usuario.compe).equals("error")) {
-                request.setAttribute("alert5", alerta.mostrarAlertas(5));
+            } else if(usuario.peso <= 0 || usuario.compe < 0 || usuario.horas < 0 || usuario.horas > 20 ) {
+                request.setAttribute("alerta", alerta.mostrarAlertas(2));
                 RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
                 rd.include(request, response);
-            } else {
-                request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-green-800 rounded-lg dark:text-green-400 max-w-md alertas' role='alert'> <span class='font-medium'>¡Formulario </span>enviado correctamente! Abajo tiene su cuota.</div>");
+            }else if(usuario.comprobarCategoria(usuario.peso,usuario.categ).equals("error")) {
+                request.setAttribute("alerta", alerta.mostrarAlertas(5));
                 RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
                 rd.include(request, response);
             }
+            else{
+                request.setAttribute("alerta", alerta.mostrarAlertas(3));
+                request.setAttribute("nombre", usuario.user);
+                request.setAttribute("nplan", usuario.comprobarPlan(usuario.plan));
+                request.setAttribute("peso", usuario.peso + "kg");
+                request.setAttribute("categore", usuario.nombreCateoria(usuario.categ));
+                request.setAttribute("pplan", usuario.precioPlan(usuario.plan) + "€<sub>/semana</sub>");
+                request.setAttribute("compes", usuario.compe + " este mes");
+                request.setAttribute("pcompes", usuario.precioCompes(usuario.compe) + "€<sub>/com</sub>");
+                request.setAttribute("horase", usuario.horas + " este mes");
+                request.setAttribute("phoras", "+" + usuario.precioHoras(usuario.horas) + "€<sub></sub>");
+                request.setAttribute("total", usuario.precioPlan(usuario.plan)*4+usuario.precioCompes(usuario.compe)+usuario.precioHoras(usuario.horas));
+                RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
+                rd.include(request, response);
+            }
+            
         } catch (Exception e) {
-            request.setAttribute("alert7", "<div class='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400 max-w-md'              role='alert'> <span class='font-medium'>Error 404!</span></div>");
+                request.setAttribute("alerta", alerta.mostrarAlertas(4));
                 RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
                 rd.include(request, response);
         }
-
     }
-
     /**
      * Returns a short description of the servlet.
      *
