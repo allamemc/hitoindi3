@@ -130,13 +130,8 @@
           <br>
           <div class="mx-auto max-w-2xl sm:text-center">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900
-              sm:text-4xl">Crea tu plan con facilidad</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-600">&iquest;Quieres
-              alcanzar
-              tus objetivos? Nuestra herramienta de creaci&oacute;n de planes
-              f&aacute;cil
-              te ayudar&aacute; a planificar tu &eacute;xito de manera
-              efectiva.</p>
+              sm:text-4xl">Busca tu Plan Perfecto</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Tenemos los tres mejores planes de entrenamiento del mercado</p>
           </div>
           <br>
           <br>

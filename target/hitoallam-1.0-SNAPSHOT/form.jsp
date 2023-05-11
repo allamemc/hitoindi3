@@ -1,4 +1,8 @@
+
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.hito.clases.Usuarios" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -238,7 +242,7 @@
 <div class=" w-1/2 h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700" >
     <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Cuota Mensual ${nombre}</h5>
-        <p class="text-sm font-medium text-blue-600">
+        <p class="text-sm font-medium text-green-600">
             Plan ${nplan}
         </p>
    </div>
@@ -317,7 +321,7 @@
                         </p>
                     </div>
                     <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        ${total}<sub>€/mes</sub>
+                        ${total}<sub>€/mes</sub> 
                     </div>
                 </div>
             </li>
@@ -326,8 +330,15 @@
    </div>
 </div>
 
+
                     </div>
-                    
+                    <br>
+                    ${texto}
+                    <br>
+                    <br>
+                    <div class="relative overflow-x-auto">
+                    ${tabla}
+                    </div>
                     <br>
            
                 </div>

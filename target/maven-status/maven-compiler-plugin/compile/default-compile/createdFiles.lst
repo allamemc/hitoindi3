@@ -1,2 +1,6 @@
 com\hito\hitoallam\resources\JakartaEE10Resource.class
+com\hito\clases\Alertas.class
+com\hito\hitoallam\Login2.class
 com\hito\hitoallam\JakartaRestConfiguration.class
+com\hito\clases\Usuarios.class
+com\hito\dao\UsuarioDAO.class

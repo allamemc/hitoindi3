@@ -41,8 +41,8 @@ public class Usuarios {
         return tipoPlan;
     }
 
-    public double precioPlan(String plan){
-        double tipoPlan;
+    public float precioPlan(String plan){
+        float tipoPlan;
         switch(plan){
             case "princ":
                 tipoPlan = 25;
@@ -60,8 +60,8 @@ public class Usuarios {
         return tipoPlan;
     }
 
-    public int precioCompes(int compes){
-        int precio;
+    public float precioCompes(int compes){
+        float precio;
         precio = compes * 22;
         return precio;
     }
@@ -120,6 +120,54 @@ public class Usuarios {
             resultado = "bien";
         }
         return resultado;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public String getCateg() {
+        return categ;
+    }
+
+    public void setCateg(String categ) {
+        this.categ = categ;
+    }
+
+    public int getCompe() {
+        return compe;
+    }
+
+    public void setCompe(int compe) {
+        this.compe = compe;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
     }
 
 }
