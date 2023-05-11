@@ -113,6 +113,8 @@ public class Login2 extends HttpServlet {
                 rd.include(request, response);
             }
             else{
+                double total = usuario.precioPlan(usuario.plan)*4+usuario.precioCompes(usuario.compe)+usuario.precioHoras(usuario.horas);
+                String resultado = String.format("%.2f", total);
                 request.setAttribute("alerta", alerta.mostrarAlertas(3));
                 request.setAttribute("nombre", usuario.user);
                 request.setAttribute("nplan", usuario.comprobarPlan(usuario.plan));
@@ -123,7 +125,7 @@ public class Login2 extends HttpServlet {
                 request.setAttribute("pcompes", usuario.precioCompes(usuario.compe) + "€<sub>/com</sub>");
                 request.setAttribute("horase", usuario.horas + " este mes");
                 request.setAttribute("phoras", "+" + usuario.precioHoras(usuario.horas) + "€<sub></sub>");
-                request.setAttribute("total", usuario.precioPlan(usuario.plan)*4+usuario.precioCompes(usuario.compe)+usuario.precioHoras(usuario.horas));
+                request.setAttribute("total", resultado);
                 RequestDispatcher rd = request.getRequestDispatcher("form.jsp");
                 rd.include(request, response);
             }

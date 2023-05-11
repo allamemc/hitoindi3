@@ -41,8 +41,8 @@ public class Usuarios {
         return tipoPlan;
     }
 
-    public float precioPlan(String plan){
-        float tipoPlan;
+    public double precioPlan(String plan){
+        double tipoPlan;
         switch(plan){
             case "princ":
                 tipoPlan = 25;
