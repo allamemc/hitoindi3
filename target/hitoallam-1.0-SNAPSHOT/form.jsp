@@ -176,7 +176,7 @@
                                 rounded-lg block w-full p-2.5
                                 dark:border-gray-600 dark:placeholder-gray-400
                                 dark:focus:ring-blue-500
-                                dark:focus:border-blue-500"
+                                dark:focus:border-blue-500" min="1" max="400"
                                 placeholder="Introduzca su peso en Kg" required>
                         </div>
 
@@ -213,7 +213,7 @@
                                 rounded-lg block w-full p-2.5
                                 dark:border-gray-600 dark:placeholder-gray-400
                                 dark:focus:ring-blue-500
-                                dark:focus:border-blue-500"
+                                dark:focus:border-blue-500" min="1" max="7"
                                 placeholder="Introduzca los eventos en los que ha participado" required>
                         </div>
       
